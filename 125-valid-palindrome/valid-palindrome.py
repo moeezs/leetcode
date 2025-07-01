@@ -4,14 +4,24 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-        s_new = ""
-        for char in s:
-            if char in alph:
-                s_new += char.lower()
-        print(s_new)
+        i = 0
+        j = len(s) - 1
+        accepted = 'qwertyuiopasdfghjklzxcvbnm1234567890'
+
+        while i < j:
+            if s[i].lower() not in accepted:
+                i += 1
+                continue
+            if s[j].lower() not in accepted:
+                j -= 1
+                continue
+            if s[i].lower() != s[j].lower():
+                return False
+            else:
+                i += 1
+                j -= 1
+        return True
         
-        if s_new == s_new[::-1]:
-            return True
-        else:
-            return False
+
+        
+        
