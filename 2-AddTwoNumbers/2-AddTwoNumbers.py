@@ -1,38 +1,42 @@
-# Last updated: 05/06/2025, 22:14:12
+# Last updated: 8/8/2025, 10:02:44 AM
 # Definition for singly-linked list.
-# class ListNode:
+# class ListNode(object):
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        num_1 = ''
-        current_1 = l1
-        while current_1:
-            num_1 += str(current_1.val)
-            current_1 = current_1.next
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: Optional[ListNode]
+        :type l2: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
+        temp1 = l1
+        l1s = ''
+        while temp1 != None:
+            l1s += str(temp1.val)
+            temp1 = temp1.next
 
-        num_2 = ''
-        current_2 = l2
-        while current_2:
-            num_2 += str(current_2.val)
-            current_2 = current_2.next
 
-        num_1 = num_1[::-1]
-        num_2 = num_2[::-1]
+        temp2 = l2
+        l2s = ''
+        while temp2 != None:
+            l2s += str(temp2.val)
+            temp2 = temp2.next
 
-        sum = str(int(num_1) + int(num_2))
-        sum = sum[::-1]
 
-        chars = []
+        answer = str(int(l1s[::-1]) + int (l2s[::-1]))
+        answer = answer[::-1]
 
-        for i in range(len(sum)):
-            chars.append(sum[i])
+        result = ListNode(int(answer[0]))
+        tempresult = result
+        for i in range(1, len(answer)):
+            tempresult.next = ListNode(int(answer[i]))
+            tempresult = tempresult.next
+        print(tempresult)
+        
+        return result
 
-        dummy = ListNode()
-        current = dummy
-        for char in chars:
-            current.next = ListNode(int(char))
-            current = current.next
 
-        return dummy.next
+
+        
